@@ -63,15 +63,15 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
-      it 'daysが未選択だと保存できない' do
-        @item.days_id = ''
+      it 'scheduled_deliveryが未選択だと保存できない' do
+        @item.scheduled_delivery_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Days can't be blank")
+        expect(@item.errors.full_messages).to include("Scheduled delivery can't be blank")
       end
-      it 'daysが0だと保存できない' do
-        @item.days_id = 0
+      it 'scheduled_deliveryが0だと保存できない' do
+        @item.scheduled_delivery_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Days can't be blank")
+        expect(@item.errors.full_messages).to include("Scheduled delivery can't be blank")
       end
       it 'priceが空だと保存できない' do
         @item.price = ''
