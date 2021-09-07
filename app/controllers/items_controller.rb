@@ -14,7 +14,7 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @item = Item.order("id DESC")
+    @item = Item.order('id DESC')
   end
 
   def new
@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-       redirect_to item_path(@item)
+      redirect_to item_path(@item)
     else
       render :edit
     end
@@ -49,7 +49,7 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:item_name, :image, :item_text, :category_id, :postage_id, :condition_id, :prefecture_id,
                                  :scheduled_delivery_id, :price).merge(user_id: current_user.id)
   end
-  
+
   def set_item
     @item = Item.find(params[:id])
   end
