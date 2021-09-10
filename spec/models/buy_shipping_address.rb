@@ -17,7 +17,7 @@ RSpec.describe BuyShippingAddress, type: :model do
         @buy_shipping_address.building = ''
         expect(@buy_shipping_address).to be_valid
       end
-      it "priceとtokenがあれば保存ができること" do
+      it 'priceとtokenがあれば保存ができること' do
         expect(@buy_shipping_address).to be_valid
       end
     end
@@ -31,12 +31,12 @@ RSpec.describe BuyShippingAddress, type: :model do
       it 'postal_codeは半角のハイフンを含まないと保存できない' do
         @buy_shipping_address.phone_number = '111-2222'
         @buy_shipping_address.valid?
-        expect(@buy_shipping_address.errors.full_messages).to include("Phone number is invalid. Include hyphen(-)")
+        expect(@buy_shipping_address.errors.full_messages).to include('Phone number is invalid. Include hyphen(-)')
       end
       it 'postal_codeは全角だと保存できない' do
         @buy_shipping_address.postal_code = '１２３'
         @buy_shipping_address.valid?
-        expect(@buy_shipping_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@buy_shipping_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it 'prefectureが未選択だと保存できない' do
         @buy_shipping_address.prefecture_id = ''
@@ -66,22 +66,22 @@ RSpec.describe BuyShippingAddress, type: :model do
       it 'phone_numberは９桁以内だと保存できない' do
         @buy_shipping_address.phone_number = '111111111'
         @buy_shipping_address.valid?
-        expect(@buy_shipping_address.errors.full_messages).to include("Phone number is invalid. Include hyphen(-)")
+        expect(@buy_shipping_address.errors.full_messages).to include('Phone number is invalid. Include hyphen(-)')
       end
       it 'phone_numberは12桁以上だと保存できない' do
         @buy_shipping_address.phone_number = '222222222222'
         @buy_shipping_address.valid?
-        expect(@buy_shipping_address.errors.full_messages).to include("Phone number is invalid. Include hyphen(-)")
+        expect(@buy_shipping_address.errors.full_messages).to include('Phone number is invalid. Include hyphen(-)')
       end
       it 'phone_numberは全角数値だと保存できない' do
         @buy_shipping_address.phone_number = '１２３４５６７８９１０'
         @buy_shipping_address.valid?
-        expect(@buy_shipping_address.errors.full_messages).to include("Phone number is invalid. Include hyphen(-)")
+        expect(@buy_shipping_address.errors.full_messages).to include('Phone number is invalid. Include hyphen(-)')
       end
       it 'phone_numberはハイフンを含むと保存できない' do
         @buy_shipping_address.phone_number = '111-2222'
         @buy_shipping_address.valid?
-        expect(@buy_shipping_address.errors.full_messages).to include("Phone number is invalid. Include hyphen(-)")
+        expect(@buy_shipping_address.errors.full_messages).to include('Phone number is invalid. Include hyphen(-)')
       end
       it 'buy_shipping_addressとuserが紐ずいていないと保存できない' do
         @buy_shipping_address.user_id = nil
@@ -93,7 +93,7 @@ RSpec.describe BuyShippingAddress, type: :model do
         @buy_shipping_address.valid?
         expect(@buy_shipping_address.errors.full_messages).to include("Item can't be blank")
       end
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @buy_shipping_address.token = nil
         @buy_shipping_address.valid?
         expect(@buy_shipping_address.errors.full_messages).to include("Token can't be blank")
