@@ -1,12 +1,14 @@
 class BuysController < ApplicationController
+  before_action :authenticate_user!, only: :index
+  before_action :set_buy
+  before_action :redirect_root
+
   def index
     @buy_shipping_address = BuyShippingAddress.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
-    @buy_shipping_address= BuyShippingAddress.new(buy_params)
-    @item = Item.find(params[:item_id])
+    @buy_shipping_address= BuyShippingAddress.new(buy_params)   
     if @buy_shipping_address.valid?
        pay_item
        @buy_shipping_address.save
@@ -22,6 +24,10 @@ class BuysController < ApplicationController
     params.require(:buy_shipping_address).permit(:postal_code, :prefecture_id, :city, :house_number, :building, :phone_number, :price).merge(user_id: current_user.id,item_id: params[:item_id],token: params[:token])
   end
 
+  def set_buy
+    @item = Item.find(params[:item_id])
+  end
+
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
@@ -31,4 +37,9 @@ class BuysController < ApplicationController
     )
   end
 
+  def redirect_root
+    if current_user == @item.user || @item.buy.present?
+      redirect_to root_path 
+    end
+  end
 end

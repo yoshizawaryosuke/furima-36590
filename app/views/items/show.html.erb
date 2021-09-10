@@ -8,11 +8,12 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image ,class:"item-box-img" %>
-     <% if @item_id.present? %> 
-      <div class="sold-out">
+     <% if @item.buy.present? %>
+      <div class='sold-out'>
         <span>Sold Out!!</span>
       </div>
-     <% end %>
+    <% end %>
+
     </div>
     <div class="item-price-box">
       <span class="item-price">
