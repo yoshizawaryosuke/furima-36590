@@ -9,7 +9,7 @@ class BuyShippingAddress
     validates :city
     validates :house_number
     validates :token
-    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'Input only number' }
+    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'Please enter in numbers or 10 or 11 digits' }
     validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
   end
 

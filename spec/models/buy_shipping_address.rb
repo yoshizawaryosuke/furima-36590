@@ -66,22 +66,22 @@ RSpec.describe BuyShippingAddress, type: :model do
       it 'phone_numberは９桁以内だと保存できない' do
         @buy_shipping_address.phone_number = '111111111'
         @buy_shipping_address.valid?
-        expect(@buy_shipping_address.errors.full_messages).to include('Phone number Input only number')
+        expect(@buy_shipping_address.errors.full_messages).to include('Phone number Please enter in numbers or 10 or 11 digits')
       end
       it 'phone_numberは12桁以上だと保存できない' do
         @buy_shipping_address.phone_number = '222222222222'
         @buy_shipping_address.valid?
-        expect(@buy_shipping_address.errors.full_messages).to include('Phone number Input only number')
+        expect(@buy_shipping_address.errors.full_messages).to include('Phone number Please enter in numbers or 10 or 11 digits')
       end
       it 'phone_numberは全角数値だと保存できない' do
         @buy_shipping_address.phone_number = '１２３４５６７８９１０'
         @buy_shipping_address.valid?
-        expect(@buy_shipping_address.errors.full_messages).to include('Phone number Input only number')
+        expect(@buy_shipping_address.errors.full_messages).to include('Phone number Please enter in numbers or 10 or 11 digits')
       end
       it 'phone_numberはハイフンを含むと保存できない' do
         @buy_shipping_address.phone_number = '111-2222'
         @buy_shipping_address.valid?
-        expect(@buy_shipping_address.errors.full_messages).to include("Phone number Input only number")
+        expect(@buy_shipping_address.errors.full_messages).to include("Phone number Please enter in numbers or 10 or 11 digits")
       end
       it 'buy_shipping_addressとuserが紐ずいていないと保存できない' do
         @buy_shipping_address.user_id = nil
